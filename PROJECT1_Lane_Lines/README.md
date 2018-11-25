@@ -4,16 +4,18 @@
 <img src="examples/laneLines_thirdPass.jpg" width="480" alt="Combined Image" />
 
 Overview
----
+---------------------------------------------------------------------------------------------------------------------------------------
 
-When we drive, we use our eyes to decide where to go.  The lines on the road that show us where the lanes are act as our constant reference for where to steer the vehicle.  Naturally, one of the first things we would like to do in developing a self-driving car is to automatically detect lane lines using an algorithm.
+After learning some techniques of open cv, this project is to apply whatever we have learned during last 1 week. We have learnt, 
 
-In this project you will detect lane lines in images using Python and OpenCV.  OpenCV means "Open-Source Computer Vision", which is a package that has many useful tools for analyzing images.  
+1) How to get gray scale image
+2) Color selection
+3) Region masking
+4) Canny edge detection
+5) Hough transform and few others.
 
-To complete the project, two files will be submitted: a file containing project code and a file containing a brief write up explaining your solution. We have included template files to be used both for the [code](https://github.com/udacity/CarND-LaneLines-P1/blob/master/P1.ipynb) and the [writeup](https://github.com/udacity/CarND-LaneLines-P1/blob/master/writeup_template.md).The code file is called P1.ipynb and the writeup template is writeup_template.md 
+This project is to test all this topics. Here we need to find lane lines from the images and videos. At the end there is one challenge video there we need to find lane line of curve road.
 
-To meet specifications in the project, take a look at the requirements in the [project rubric](https://review.udacity.com/#!/rubrics/322/view)
-
----------------------------------------------------------------------------------------------------
-Please check out Project1_Report -> P1_submission.md file for project details. I have attached all the details in it. 
-['Click here to refer md file'](Project1_Report\P1_submission.md)
+---------------------------------------------------------------------------------------------------------------------------------------
+### Please check out Project1_Report -> P1_submission.md file for project details. I have attached all the details in it. 
+## ['Click here to refer that md file']('Project1_Report/P1_submission.md')

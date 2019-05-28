@@ -12,7 +12,7 @@ The goals / steps of this project are:
 
 The output after performing each steps can be found in below mentioned video:
 
-[![output](http://img.youtube.com/vi/1Ojmk2t7rGU/0.jpg)](http://www.youtube.com/watch?v=1Ojmk2t7rGU)
+![output1](./output.gif)
 
 In order to acheive above output, following steps were performed:
 
@@ -66,13 +66,13 @@ For detecting the lane lines from the perspective transformed image I have used 
 
 Code for this step is contained in src/thresholding.py 
 
-    1.Colour Thresholding :
+   1.Colour Thresholding :
 
-    Lane lines are of white or yellow colour,to detect the lane lines in different weather,lighting conditions, I have used filtering on     HSL Colour space where I am using thresholding on saturation and hue channels,thresholds have been tuned to detect lane lines only
+   Lane lines are of white or yellow colour,to detect the lane lines in different weather,lighting conditions, I have used filtering on    HSL Colour space where I am using thresholding on saturation and hue channels,thresholds have been tuned to detect lane lines only
 
-    2.Gradient Thresholding :
+   2.Gradient Thresholding :
 
-    Lane lines are having edge on both the side and this can be detected using edge detectors like canny and sobel,I have sobel edge      detection with gradient in x, y direction, magnitude and direction of threshold. This 4 result have been combined to detect edge of the lane line
+   Lane lines are having edge on both the side and this can be detected using edge detectors like canny and sobel,I have sobel edge        detection with gradient in x, y direction, magnitude and direction of threshold. This 4 result have been combined to detect edge of      the lane line
 
 These both thresholding have been combined to form the final binary image showing the lane lines.Results can be seen from the below images: 
 
@@ -81,6 +81,9 @@ These both thresholding have been combined to form the final binary image showin
 ![Image8](./output_images/combine_threshold_hls_edge_1.png)
 ![Image9](./output_images/combine_threshold_hls_edge_2.png)
 
+![Image13](./output_images/final_thresholding_1.png)
+![Image14](./output_images/final_thresholding_2.png)
+![Image15](./output_images/final_thresholding_2_curved.png)
 
 # Sliding Window Search
 
@@ -89,6 +92,7 @@ Code of this section is contained in slidingwindowsearch.py
 This technique has been used to identify lane line pixels and fitting 2 curves for left and right lane lines, search_lanes() method of LaneDetector Class implements this logic. Where in the first pass a sliding window search start from the bottom of the image and identifies pixels of the lane portion and continue towards top of the image, then this pixels are fitted by 2nd degree polynomial.
 
 ![Image10](./output_images/lane_fit.png)
+![Image16](./output_images/hist.png)
 
 In the above image left line pixels are marked with Red colour, and right lane pixels are marked with blue colour, green rectangles shows the window used for detection. Fit curves are marked with yellow lines.
 
@@ -106,16 +110,16 @@ Final output image will overlay lane portion in green, Radius of curvature and p
 # Test on video
 
 Code for Video pipeline is in runner.py which converts the videos to frame, process each frame and then compiles the output video.
-Sample output video can be found with name: output.mp4
+Sample output video can be found with name: output.mp4 and also on youtube: http://www.youtube.com/watch?v=1Ojmk2t7rGU
 
-[![output](http://img.youtube.com/vi/1Ojmk2t7rGU/0.jpg)](http://www.youtube.com/watch?v=1Ojmk2t7rGU)
+![output2](./output.gif)
 
 ## Discussion 
-    * Problems faced during Tuning Threshold Parameters:
+   * Problems faced during Tuning Threshold Parameters:
         - Tuning parameters for thresholding was tricky and I found it time consuming, to make this faster I have used sliders from               OpenCV and made a function to tune parameter for every threshold function individually. And then combined the result of all             the thresholds. Code for the same is available in thresholding.py Threshold_Tuner Class. Which saved lot of time.
 
-    * Problem in detecting lines with shadows:
+   * Problem in detecting lines with shadows:
         - I was facing a problem to identify lane lines with shadows as I was using gradient and Saturation channel thresholding. It was           detecting shadows as a lane line, to fix this I have added more thresholding function on X and Y gradient, direction and                 magnitude of gradient and most important Thresholding on Hue channel, Combinations of all this resulted in a robust pipeline.  
-    * Possible failures:
+   * Possible failures:
         - My pipeline for detecting lane lines is not fully robust so it can fail at some places of challenge video. Few bad frames can           make lane detection to fail as I am not using reset functionality.
         - My pipeline might also fail in different weather condition or on road with patches.

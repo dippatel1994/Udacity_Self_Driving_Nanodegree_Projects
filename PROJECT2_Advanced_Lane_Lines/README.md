@@ -12,7 +12,7 @@ The goals / steps of this project are:
 
 The output after performing each steps can be found in below mentioned video:
 
- ![project video output](./output.mp4)
+[![output](http://img.youtube.com/vi/1Ojmk2t7rGU/0.jpg)](http://www.youtube.com/watch?v=1Ojmk2t7rGU)
 
 In order to acheive above output, following steps were performed:
 
@@ -30,8 +30,8 @@ These lists are used by cv2.calibrateCamera to fetch camera matrix and distortio
 Code for this step is contained in src/preprocessing.py : undist_image()
 I used camera matrix and distortion co-efficient to undistort all the raw camera image, I have used cv2.undist function for the same. Obtained results can be seen in below images
 
-![Image1](./output_images/undist.png)
-![Image2](./output_images/undist2.png)
+![Image1](./output_images/Undist.png)
+![Image2](./output_images/Undist2.png)
     
 # 3) Perspective Transformation:
 
@@ -56,7 +56,7 @@ Red points in the original image represents the chosen source points, last image
 
 Below image shows the results on curvy lane lines near the left turn:
 
-![Image5](./output_images/3_org_undist_persp_3.png)
+![Image5](./output_images/3_org_undist_persp_3_curved.png)
 
 # 4) Lane lines Detection:
 
@@ -68,18 +68,18 @@ Code for this step is contained in src/thresholding.py
 
     1.Colour Thresholding :
 
-    Lane lines are of white or yellow colour,to detect the lane lines in different weather,lighting conditions, I have used                 filtering on HSL Colour space where I am using thresholding on saturation and hue channels,thresholds have been tuned to detect         lane lines only
+    Lane lines are of white or yellow colour,to detect the lane lines in different weather,lighting conditions, I have used filtering on     HSL Colour space where I am using thresholding on saturation and hue channels,thresholds have been tuned to detect lane lines only
 
     2.Gradient Thresholding :
 
-    Lane lines are having edge on both the side and this can be detected using edge detectors like canny and sobel,I have sobel edge         detection with gradient in x, y direction, magnitude and direction of threshold. This 4 result have been combined to detect edge of     the lane line
+    Lane lines are having edge on both the side and this can be detected using edge detectors like canny and sobel,I have sobel edge      detection with gradient in x, y direction, magnitude and direction of threshold. This 4 result have been combined to detect edge of the lane line
 
 These both thresholding have been combined to form the final binary image showing the lane lines.Results can be seen from the below images: 
 
 ![Image6](./output_images/hsl_thresholding.png)
 ![Image7](./output_images/combine_threshold_hls_edge.png)
-![Image8](./output_images/combine_threshold_hls_edge1.png)
-![Image9](./output_images/combine_threshold_hls_edge2.png)
+![Image8](./output_images/combine_threshold_hls_edge_1.png)
+![Image9](./output_images/combine_threshold_hls_edge_2.png)
 
 
 # Sliding Window Search
@@ -108,7 +108,7 @@ Final output image will overlay lane portion in green, Radius of curvature and p
 Code for Video pipeline is in runner.py which converts the videos to frame, process each frame and then compiles the output video.
 Sample output video can be found with name: output.mp4
 
-![Video2](./output.mp4)
+[![output](http://img.youtube.com/vi/1Ojmk2t7rGU/0.jpg)](http://www.youtube.com/watch?v=1Ojmk2t7rGU)
 
 ## Discussion 
     * Problems faced during Tuning Threshold Parameters:

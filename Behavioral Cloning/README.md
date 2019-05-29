@@ -38,7 +38,7 @@ The goals of this project are the following:
 
 ## 3. Data Augmentation:
  
-    - Augmentation includes randomly choosing the camera image from center left and right camera, adding the offset to steering angle based on the image chosen, preprocessing the image which includes cropping the image to just select the drivable portion from the frame and randomly flipping the image along vertical axis and changing the sign of steering angle.
+- Augmentation includes randomly choosing the camera image from center left and right camera, adding the offset to steering angle based on the image chosen, preprocessing the image which includes cropping the image to just select the drivable portion from the frame and randomly flipping the image along vertical axis and changing the sign of steering angle.
     
     - Code for which is in model.py function: augment_row
  
@@ -78,11 +78,11 @@ To
 
 This autonomous drive can be recorded by putting a folder name to store recorder frames
 
-    `python drive.py model.h5 <folder_name>`
+    python drive.py model.h5 <folder_name>
 
 video can be compiled from recorder frames by using 
 
-    `python video.py <folder_name>`
+    python video.py <folder_name>
 
 ## 3. Is the code usable and readable?
 
@@ -104,6 +104,7 @@ The model.py file contains the code for preprocessing dataset, training and savi
 
 
 |6  |Drop out Layer 1       |Keep_prob : 0.3    |
+--- | --- | ---
 |7  |Flatten Layer          |                   |	
 |8  |Drop out Layer 2       |Keep_prob : 0.3    |
 |9  |Dense layer 1          |Size : 512         |
@@ -113,29 +114,25 @@ The model.py file contains the code for preprocessing dataset, training and savi
 - The model includes ELU layers to introduce nonlinearity and the data is normalized in the model using a Keras lambda layer.
 Number of parameters and input and output shape at each layer is shown below:
 
-
-
-
-
-|Layer      | (type)    |   Output Shape    |   Param #|Connected to    |
-|-----------|-----------|-------------------|:-------------------------:|
-|lambda_1 (Lambda)  |(None, 70, 320, 3) |0  |lambda_input_1[0][0]
-|convolution2d_1 (Convolution2D) |(None, 35, 160, 32)    |2432   |lambda_1[0][0]
-|elu_1 (ELU)    |(None, 35, 160, 32)    |0  |convolution2d_1[0][0]
-|maxpooling2d_1 (MaxPooling2D)  |(None, 17, 80, 32) |0  |elu_1[0][0]
-|convolution2d_2 (Convolution2D)    |(None, 17, 80, 16) |4624   |maxpooling2d_1[0][0]
-|elu_2 (ELU)    |(None, 17, 80, 16) |0   |convolution2d_2[0][0]
-|maxpooling2d_2 (MaxPooling2D)  |(None, 8, 40, 16)  |0  |elu_2[0][0]
-|convolution2d_3 (Convolution2D)    |(None, 6, 38, 16)  |2320   |maxpooling2d_2[0][0]
-|elu_3 (ELU)    |(None, 6, 38, 16)  |0  |convolution2d_3[0][0]
-|dropout_1 (Dropout)    |(None, 6, 38, 16)  |0  |elu_3[0][0]
-|flatten_1 (Flatten)    |(None, 3648)   |0  |dropout_1[0][0]
-|dense_1 (Dense)    |(None, 512)    |1868288    |flatten_1[0][0]
-|elu_4 (ELU)    |(None, 512)    |0  |dense_1[0][0]
-|dropout_2 (Dropout)    |(None, 512)    |0  |elu_4[0][0]
-|dense_2 (Dense)    |(None, 256)    |131328 |dropout_2[0][0]
-|elu_5 (ELU)    |(None, 256)    |0  |dense_2[0][0]
-|dense_3 (Dense)    |(None, 1)  |257    |elu_5[0][0]
+|Layer(type)                        |Opt Shape              |Param #    |Connected to           |
+--- | --- | --- | ---
+|lambda_1 (Lambda)                  |(None, 70, 320, 3)     |0          |lambda_input_1[0][0]   |
+|convolution2d_1 (Convolution2D)    |(None, 35, 160, 32)    |2432       |lambda_1[0][0]         |
+|elu_1 (ELU)                        |(None, 35, 160, 32)    |0          |convolution2d_1[0][0]  |
+|maxpooling2d_1 (MaxPooling2D)      |(None, 17, 80, 32)     |0          |elu_1[0][0]            |
+|convolution2d_2 (Convolution2D)    |(None, 17, 80, 16)     |4624       |maxpooling2d_1[0][0]   |
+|elu_2 (ELU)                        |(None, 17, 80, 16)     |0          |convolution2d_2[0][0]  |
+|maxpooling2d_2 (MaxPooling2D)      |(None, 8, 40, 16)      |0          |elu_2[0][0]            |
+|convolution2d_3 (Convolution2D)    |(None, 6, 38, 16)      |2320       |maxpooling2d_2[0][0]   |
+|elu_3 (ELU)                        |(None, 6, 38, 16)      |0          |convolution2d_3[0][0]  |
+|dropout_1 (Dropout)                |(None, 6, 38, 16)      |0          |elu_3[0][0]            |
+|flatten_1 (Flatten)                |(None, 3648)           |0          |dropout_1[0][0]        |
+|dense_1 (Dense)                    |(None, 512)            |1868288    |flatten_1[0][0]        |
+|elu_4 (ELU)                        |(None, 512)            |0          |dense_1[0][0]          |
+|dropout_2 (Dropout)                |(None, 512)            |0          |elu_4[0][0]            |
+|dense_2 (Dense)                    |(None, 256)            |131328     |dropout_2[0][0]
+|elu_5 (ELU)                        |(None, 256)            |0          |dense_2[0][0]
+|dense_3 (Dense)                    |(None, 1)              |257        |elu_5[0][0]
 
 - Total params: 2,009,249
 - Trainable params: 2,009,249
